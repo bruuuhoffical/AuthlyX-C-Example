@@ -1,0 +1,11 @@
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX CSharp Example (Console)\AuthlyX CSharp Example (Console)\bin\Debug\AuthlyX CSharp Example (Console).exe.config
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX CSharp Example (Console)\AuthlyX CSharp Example (Console)\bin\Debug\AuthlyX CSharp Example (Console).exe
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX CSharp Example (Console)\AuthlyX CSharp Example (Console)\bin\Debug\AuthlyX CSharp Example (Console).pdb
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX CSharp Example (Console)\AuthlyX CSharp Example (Console)\bin\Debug\Newtonsoft.Json.dll
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX CSharp Example (Console)\AuthlyX CSharp Example (Console)\bin\Debug\Newtonsoft.Json.xml
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX CSharp Example (Console)\AuthlyX CSharp Example (Console)\obj\Debug\AuthlyX CSharp Example (Console).csproj.AssemblyReference.cache
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX CSharp Example (Console)\AuthlyX CSharp Example (Console)\obj\Debug\AuthlyX CSharp Example (Console).csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX CSharp Example (Console)\AuthlyX CSharp Example (Console)\obj\Debug\AuthlyX .72D1DFDD.Up2Date
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX CSharp Example (Console)\AuthlyX CSharp Example (Console)\obj\Debug\AuthlyX CSharp Example (Console).exe
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX CSharp Example (Console)\AuthlyX CSharp Example (Console)\obj\Debug\AuthlyX CSharp Example (Console).pdb
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX CSharp Example (Console)\AuthlyX CSharp Example (Console)\obj\Debug\AuthlyX CSharp Example (Console).exe.config
