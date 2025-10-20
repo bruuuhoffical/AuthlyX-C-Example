@@ -7,16 +7,15 @@ using System.Net.Http;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
-using System.Runtime.InteropServices; // Added for AllocConsole and FreeConsole
+using System.Runtime.InteropServices;
 
 namespace AuthlyXClient
 {
     /// <summary>
     /// Provides authentication and licensing functionality for interacting with the AuthlyX API.
     /// </summary>
-    public class api
+    public class auth
     {
-        // P/Invoke declarations for console management
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern bool AllocConsole();
 
@@ -71,7 +70,7 @@ namespace AuthlyXClient
         /// <param name="appName">Name of the application.</param>
         /// <param name="version">Version of the application.</param>
         /// <param name="secret">Application secret key.</param>
-        public api(string ownerId, string appName, string version, string secret)
+        public auth(string ownerId, string appName, string version, string secret)
         {
             this.ownerId = ownerId;
             this.appName = appName;

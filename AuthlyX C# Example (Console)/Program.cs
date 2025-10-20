@@ -7,7 +7,7 @@ namespace AuthlyX_CSharp_Example__Console_
 {
     internal class Program
     {
-        public static api AuthlyXApp = new api(
+        public static auth AuthlyXApp = new auth(
             ownerId: "469e4d9235d1",
             appName: "BASIC",
             version: "1.0.0",
@@ -24,13 +24,15 @@ namespace AuthlyX_CSharp_Example__Console_
             Console.WriteLine("╚══════════════════════════════════════╝");
             Console.ResetColor();
 
-            Console.WriteLine("\nInitializing AuthlyX Connection...");
+            Console.WriteLine("\n Starting...");
+            //Console.WriteLine("\nInitializing AuthlyX Connection...");
+            
             await AuthlyXApp.Init();
 
             if (!AuthlyXApp.response.success)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Initialization Failed: {AuthlyXApp.response.message}");
+                Console.WriteLine($"Couldn't Start: {AuthlyXApp.response.message}");
                 Console.ResetColor();
                 Console.WriteLine("Press any key to exit...");
                 Console.ReadKey();
@@ -275,7 +277,7 @@ namespace AuthlyX_CSharp_Example__Console_
             }
         }
 
-        static void DisplayResult(string operation, api.ResponseStruct response)
+        static void DisplayResult(string operation, auth.ResponseStruct response)
         {
             Console.WriteLine("\n" + new string('─', 30));
             if (response.success)
