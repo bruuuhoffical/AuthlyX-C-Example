@@ -135,14 +135,8 @@ namespace AuthlyXClient
                     //userData.Role = info["role"]?.ToString();
                     userData.RegisteredAt = info["created_at"]?.ToString();
                 }
-
-                userData.Hwid = GetSystemSid();
-                userData.IpAddress = GetLocalIp();
             }
-            catch (Exception ex)
-            {
-                AuthlyLogger.Log($"[PARSE_ERROR] Failed to parse user/license data: {ex.Message}");
-            }
+            catch { }
         }
 
         private void LoadVariableData(JObject obj)
@@ -157,20 +151,15 @@ namespace AuthlyXClient
                     variableData.UpdatedAt = variable["updated_at"]?.ToString();
                 }
             }
-            catch (Exception ex)
-            {
-                AuthlyLogger.Log($"[PARSE_ERROR] Failed to parse variable data: {ex.Message}");
-            }
+            catch { }
         }
 
         /// <summary>
-        /// Initializes the connection with the AuthlyX API using the provided credentials.
+        /// Initializes the session with the server.
         /// </summary>
         public async Task Init()
         {
-            AuthlyLogger.AppName = appName;
-
-            var result = await PostJson("init", new
+            await PostJson("init", new
             {
                 owner_id = ownerId,
                 app_name = appName,
@@ -178,42 +167,18 @@ namespace AuthlyXClient
                 secret = secret
             });
 
-            try
+            if (response.success)
             {
-                var obj = JObject.Parse(result);
-                if (obj["session_id"] != null)
-                {
-                    sessionId = obj["session_id"].ToString();
-                }
-                else if (!response.success)
-                {
-                    // Allocate console for error display
-                    AllocConsole();
-                    Console.WriteLine($"Initialization Error: {response.message}");
-                    Console.WriteLine("Press any key to exit...");
-                    Console.ReadKey();
-                    FreeConsole();
-                    Environment.Exit(1);
-                }
-            }
-            catch (Exception ex)
-            {
-                // Allocate console for exception display
-                AllocConsole();
-                Console.WriteLine($"Initialization Exception: {ex.Message}");
-                Console.WriteLine("Press any key to exit...");
-                Console.ReadKey();
-                FreeConsole();
-                AuthlyLogger.Log($"[INIT_ERROR] {ex.Message}");
-                Environment.Exit(1);
+                var obj = JObject.Parse(response.raw);
+                sessionId = obj["session_id"]?.ToString();
             }
         }
 
         /// <summary>
-        /// Authenticates a user using their username and password.
+        /// Logs in a user with username and password.
         /// </summary>
-        /// <param name="username">The username of the user.</param>
-        /// <param name="password">The password of the user.</param>
+        /// <param name="username">The username.</param>
+        /// <param name="password">The password.</param>
         public async Task Login(string username, string password)
         {
             string sid = GetSystemSid();
@@ -297,6 +262,19 @@ namespace AuthlyXClient
                 session_id = sessionId,
                 var_key = varKey,
                 var_value = varValue
+            });
+        }
+
+        /// <summary>
+        /// Sends a log message to the server (stored or sent to webhook based on app settings).
+        /// </summary>
+        /// <param name="message">The log message to send.</param>
+        public async Task Log(string message)
+        {
+            await PostJson("logs", new
+            {
+                session_id = sessionId,
+                message = message
             });
         }
 

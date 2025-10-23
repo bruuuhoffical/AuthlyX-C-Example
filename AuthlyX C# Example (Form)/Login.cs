@@ -30,6 +30,7 @@ namespace AuthlyX_C__Example__Form_
                 MessageBox.Show($"Initialization failed: {AuthlyXApp.response.message}","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
             }
+            await AuthlyXApp.Log("Initialized");
         }
 
         private async void btn_Login_Click(object sender, EventArgs e)
