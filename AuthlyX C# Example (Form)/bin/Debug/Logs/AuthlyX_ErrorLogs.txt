@@ -1,0 +1,7 @@
+10/23/2025 10:42:41 PM > You're connecting too fast to the server, slow down.
+10/23/2025 10:42:53 PM > You're connecting too fast to the server, slow down.
+10/23/2025 10:43:47 PM > You're connecting too fast to the server, slow down.
+10/23/2025 10:44:17 PM > You're connecting too fast to the server, slow down.
+10/23/2025 10:50:22 PM > You're connecting too fast to the server, slow down.
+10/23/2025 10:50:41 PM > You're connecting too fast to the server, slow down.
+10/23/2025 10:52:44 PM > You're connecting too fast to the server, slow down.

@@ -26,7 +26,7 @@ namespace AuthlyX_CSharp_Example__Console_
 
             Console.WriteLine("\n Starting...");
             //Console.WriteLine("\nInitializing AuthlyX Connection...");
-            
+
             await AuthlyXApp.Init();
 
             if (!AuthlyXApp.response.success)
@@ -64,7 +64,7 @@ namespace AuthlyX_CSharp_Example__Console_
                         await TestVariables();
                         break;
                     case "5":
-                        await TestUserInfo();
+                        TestUserInfo();
                         break;
                     case "6":
                         await TestAllFeatures();
@@ -222,7 +222,7 @@ namespace AuthlyX_CSharp_Example__Console_
             }
         }
 
-        static async Task TestUserInfo()
+        static void TestUserInfo()
         {
             Console.WriteLine("\n" + new string('─', 40));
             Console.ForegroundColor = ConsoleColor.Blue;

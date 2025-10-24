@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2ControlBox2 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2TabControl1 = new Guna.UI2.WinForms.Guna2TabControl();
@@ -51,6 +53,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
+            this.dragcontrol = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.guna2TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -106,7 +109,7 @@
             this.guna2TabControl1.TabButtonSelectedState.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(132)))), ((int)(((byte)(255)))));
             this.guna2TabControl1.TabButtonSize = new System.Drawing.Size(180, 40);
             this.guna2TabControl1.TabIndex = 2;
-            this.guna2TabControl1.TabMenuBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(42)))), ((int)(((byte)(57)))));
+            this.guna2TabControl1.TabMenuBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
             // 
             // tabPage1
             // 
@@ -343,6 +346,12 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "AuthlyX C# Example";
             // 
+            // dragcontrol
+            // 
+            this.dragcontrol.DockIndicatorTransparencyValue = 0.6D;
+            this.dragcontrol.TargetControl = this;
+            this.dragcontrol.TransparentWhileDrag = false;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -353,9 +362,12 @@
             this.Controls.Add(this.guna2TabControl1);
             this.Controls.Add(this.guna2ControlBox2);
             this.Controls.Add(this.guna2ControlBox1);
+            this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Home";
-            this.Text = "Home";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "AUTHLYX - Home";
             this.Load += new System.EventHandler(this.Home_Load);
             this.guna2TabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -390,5 +402,6 @@
         private System.Windows.Forms.Label expiry;
         private System.Windows.Forms.Label last_login;
         private System.Windows.Forms.TabPage tabPage2;
+        private Guna.UI2.WinForms.Guna2DragControl dragcontrol;
     }
 }

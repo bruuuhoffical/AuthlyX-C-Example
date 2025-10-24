@@ -10,7 +10,7 @@ namespace AuthlyX_C__Example__Form_
         public static auth AuthlyXApp = new auth(
             ownerId: "469e4d9235d1",
             appName: "BASIC",
-            version: "1.0.0",
+            version: "1.1.0",
             secret: "iqcmyagw1skGdgk6Nq7OxxpX5iAmC2Hlwq7iNwyG"
         );
         public Login()
@@ -27,7 +27,7 @@ namespace AuthlyX_C__Example__Form_
             }
             else
             {
-                MessageBox.Show($"Initialization failed: {AuthlyXApp.response.message}","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Initialization failed: {AuthlyXApp.response.message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
             }
             await AuthlyXApp.Log("Initialized");
@@ -169,6 +169,11 @@ namespace AuthlyX_C__Example__Form_
                 this.Enabled = true;
                 btn_Login.Text = "Login";
             }
+        }
+
+        private void exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

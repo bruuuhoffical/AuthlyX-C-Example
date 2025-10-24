@@ -1,0 +1,11 @@
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX C# Example\AuthlyX C# Example (Console)\bin\Debug\AuthlyX C# Example (Console).exe.config
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX C# Example\AuthlyX C# Example (Console)\bin\Debug\AuthlyX C# Example (Console).exe
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX C# Example\AuthlyX C# Example (Console)\bin\Debug\AuthlyX C# Example (Console).pdb
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX C# Example\AuthlyX C# Example (Console)\bin\Debug\Newtonsoft.Json.dll
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX C# Example\AuthlyX C# Example (Console)\bin\Debug\Newtonsoft.Json.xml
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX C# Example\AuthlyX C# Example (Console)\obj\Debug\AuthlyX C# Example (Console).csproj.AssemblyReference.cache
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX C# Example\AuthlyX C# Example (Console)\obj\Debug\AuthlyX C# Example (Console).csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX C# Example\AuthlyX C# Example (Console)\obj\Debug\AuthlyX .6AE5B33A.Up2Date
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX C# Example\AuthlyX C# Example (Console)\obj\Debug\AuthlyX C# Example (Console).exe
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX C# Example\AuthlyX C# Example (Console)\obj\Debug\AuthlyX C# Example (Console).pdb
+C:\Users\user\Desktop\AuthlyX Examples\AuthlyX C# Example\AuthlyX C# Example (Console)\obj\Debug\AuthlyX C# Example (Console).exe.config
