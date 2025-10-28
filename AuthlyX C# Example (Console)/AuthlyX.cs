@@ -3,13 +3,13 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Security.Principal;
 using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
+using System.Diagnostics;
 
-namespace AuthlyXClient
+namespace AuthlyX
 {
     /// <summary>
     /// Provides authentication and licensing functionality for interacting with the AuthlyX API.
@@ -22,13 +22,20 @@ namespace AuthlyXClient
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern bool FreeConsole();
 
-        private static readonly HttpClient client = new HttpClient();
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern bool TerminateProcess(IntPtr hProcess, uint uExitCode);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern IntPtr GetCurrentProcess();
+
         private readonly string baseUrl = "https://authly.cc/api/v1";
         private string sessionId;
         private string ownerId;
         private string appName;
         private string version;
         private string secret;
+        private string applicationHash;
+        private bool initialized = false;
 
         public ResponseStruct response = new ResponseStruct();
         public UserData userData = new UserData();
@@ -51,8 +58,6 @@ namespace AuthlyXClient
             public string LastLogin { get; set; }
             public string Hwid { get; set; }
             public string IpAddress { get; set; }
-            //public string Plan { get; set; }
-            //public string Role { get; set; }
             public string RegisteredAt { get; set; }
         }
 
@@ -72,32 +77,157 @@ namespace AuthlyXClient
         /// <param name="secret">Application secret key.</param>
         public auth(string ownerId, string appName, string version, string secret)
         {
+            if (string.IsNullOrEmpty(ownerId) || string.IsNullOrEmpty(appName) ||
+                string.IsNullOrEmpty(version) || string.IsNullOrEmpty(secret))
+            {
+                Error("Invalid application credentials provided.");
+                TerminateProcess(GetCurrentProcess(), 1);
+                return;
+            }
+
             this.ownerId = ownerId;
             this.appName = appName;
             this.version = version;
             this.secret = secret;
+
+            AuthlyLogger.AppName = appName;
+
+            CalculateApplicationHash();
         }
 
-        private async Task<string> PostJson(string endpoint, object payload)
+        /// <summary>
+        /// Initializes the connection with AuthlyX in order to use any of the functions
+        /// </summary>
+        public void Init()
         {
             try
             {
-                var json = JsonConvert.SerializeObject(payload);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var res = await client.PostAsync($"{baseUrl}/{endpoint}", content);
-                var result = await res.Content.ReadAsStringAsync();
+                var payload = new
+                {
+                    owner_id = ownerId,
+                    app_name = appName,
+                    version = version,
+                    secret = secret,
+                    hash = applicationHash
+                };
 
-                AuthlyLogger.Log($"[{endpoint.ToUpper()}] {result}");
+                PostJson("init", payload);
 
-                response.raw = result;
-                var obj = JObject.Parse(result);
-                response.success = obj["success"]?.ToString()?.ToLower() == "true";
-                response.message = obj["message"]?.ToString() ?? "";
+                if (response.success)
+                {
+                    var obj = JObject.Parse(response.raw);
+                    sessionId = obj["session_id"]?.ToString();
+                    initialized = true;
+                    AuthlyLogger.Log("[INIT] Successfully initialized AuthlyX session");
+                }
+                else
+                {
+                    Error($"Initialization failed: {response.message}");
+                    TerminateProcess(GetCurrentProcess(), 1);
+                }
+            }
+            catch (Exception ex)
+            {
+                Error($"Initialization error: {ex.Message}");
+                TerminateProcess(GetCurrentProcess(), 1);
+            }
+        }
 
-                LoadUserData(obj);
-                LoadVariableData(obj);
+        /// <summary>
+        /// Checks if AuthlyX has been initialized
+        /// </summary>
+        public void CheckInit()
+        {
+            if (!initialized)
+            {
+                Error("You must Initialize AuthlyX first");
+                TerminateProcess(GetCurrentProcess(), 1);
+            }
+        }
 
-                return result;
+        /// <summary>
+        /// Automatically calculates the application hash from the current executable file.
+        /// </summary>
+        private void CalculateApplicationHash()
+        {
+            try
+            {
+                string filePath = Process.GetCurrentProcess().MainModule.FileName;
+
+                using (var sha256 = SHA256.Create())
+                {
+                    using (var stream = File.OpenRead(filePath))
+                    {
+                        byte[] hashBytes = sha256.ComputeHash(stream);
+                        applicationHash = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+                    }
+                }
+
+                AuthlyLogger.Log($"[HASH] Calculated application hash: {applicationHash.Substring(0, 16)}...");
+            }
+            catch (Exception ex)
+            {
+                AuthlyLogger.Log($"[HASH_ERROR] Failed to calculate hash: {ex.Message}");
+                applicationHash = "UNKNOWN_HASH";
+            }
+        }
+
+        private string PostJson(string endpoint, object payload)
+        {
+            try
+            {
+                using (WebClient client = new WebClient())
+                {
+                    client.Headers[HttpRequestHeader.ContentType] = "application/json";
+                    client.Encoding = Encoding.UTF8;
+                    client.Proxy = null;
+
+                    var settings = new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
+                        DefaultValueHandling = DefaultValueHandling.Ignore,
+                        Formatting = Formatting.None
+                    };
+                    var json = JsonConvert.SerializeObject(payload, Formatting.None, settings);
+
+                    var result = client.UploadString($"{baseUrl}/{endpoint}", "POST", json);
+
+                    response.raw = result;
+                    var obj = JObject.Parse(result);
+                    response.success = obj["success"]?.ToString()?.ToLower() == "true";
+                    response.message = obj["message"]?.ToString() ?? "";
+
+                    LoadUserData(obj);
+                    LoadVariableData(obj);
+
+                    return result;
+                }
+            }
+            catch (WebException webEx)
+            {
+                var httpResponse = webEx.Response as HttpWebResponse;
+                if (httpResponse != null)
+                {
+                    using (var stream = httpResponse.GetResponseStream())
+                    using (var reader = new StreamReader(stream))
+                    {
+                        var errorResponse = reader.ReadToEnd();
+                        var errorObj = JObject.Parse(errorResponse);
+                        response.success = false;
+                        response.message = errorObj["message"]?.ToString() ?? webEx.Message;
+
+                        if (httpResponse.StatusCode == HttpStatusCode.Unauthorized)
+                        {
+                            AuthlyLogger.Log($"[SIGNATURE_ERROR] {errorObj["code"]} - {response.message}");
+                        }
+                    }
+                }
+                else
+                {
+                    response.success = false;
+                    response.message = $"Network error: {webEx.Message}";
+                }
+                return "";
             }
             catch (Exception ex)
             {
@@ -107,7 +237,6 @@ namespace AuthlyXClient
                 return "";
             }
         }
-
         private void LoadUserData(JObject obj)
         {
             try
@@ -131,8 +260,6 @@ namespace AuthlyXClient
                     userData.Subscription = info["subscription"]?.ToString();
                     userData.ExpiryDate = info["expiry_date"]?.ToString();
                     userData.LastLogin = info["last_login"]?.ToString();
-                    //userData.Plan = info["plan"]?.ToString();
-                    //userData.Role = info["role"]?.ToString();
                     userData.RegisteredAt = info["created_at"]?.ToString();
                 }
             }
@@ -155,36 +282,18 @@ namespace AuthlyXClient
         }
 
         /// <summary>
-        /// Initializes the session with the server.
-        /// </summary>
-        public async Task Init()
-        {
-            await PostJson("init", new
-            {
-                owner_id = ownerId,
-                app_name = appName,
-                version = version,
-                secret = secret
-            });
-
-            if (response.success)
-            {
-                var obj = JObject.Parse(response.raw);
-                sessionId = obj["session_id"]?.ToString();
-            }
-        }
-
-        /// <summary>
         /// Logs in a user with username and password.
         /// </summary>
         /// <param name="username">The username.</param>
         /// <param name="password">The password.</param>
-        public async Task Login(string username, string password)
+        public void Login(string username, string password)
         {
+            CheckInit();
+
             string sid = GetSystemSid();
             string ip = GetLocalIp();
 
-            await PostJson("login", new
+            PostJson("login", new
             {
                 session_id = sessionId,
                 username = username,
@@ -201,11 +310,13 @@ namespace AuthlyXClient
         /// <param name="password">The password for the new user.</param>
         /// <param name="key">The license key for registration.</param>
         /// <param name="email">The email address of the user (optional).</param>
-        public async Task Register(string username, string password, string key, string email = null)
+        public void Register(string username, string password, string key, string email = null)
         {
+            CheckInit();
+
             string sid = GetSystemSid();
 
-            await PostJson("register", new
+            PostJson("register", new
             {
                 session_id = sessionId,
                 username = username,
@@ -220,12 +331,14 @@ namespace AuthlyXClient
         /// Authenticates a user using a license key.
         /// </summary>
         /// <param name="licenseKey">The license key for authentication.</param>
-        public async Task LicenseLogin(string licenseKey)
+        public void LicenseLogin(string licenseKey)
         {
+            CheckInit();
+
             string sid = GetSystemSid();
             string ip = GetLocalIp();
 
-            await PostJson("licenses", new
+            PostJson("licenses", new
             {
                 session_id = sessionId,
                 license_key = licenseKey,
@@ -239,9 +352,11 @@ namespace AuthlyXClient
         /// </summary>
         /// <param name="varKey">The key of the variable to retrieve.</param>
         /// <returns>The value of the variable, or null if not found.</returns>
-        public async Task<string> GetVariable(string varKey)
+        public string GetVariable(string varKey)
         {
-            await PostJson("variables", new
+            CheckInit();
+
+            PostJson("variables", new
             {
                 session_id = sessionId,
                 var_key = varKey
@@ -255,9 +370,11 @@ namespace AuthlyXClient
         /// </summary>
         /// <param name="varKey">The key of the variable to set.</param>
         /// <param name="varValue">The value to set for the variable.</param>
-        public async Task SetVariable(string varKey, string varValue)
+        public void SetVariable(string varKey, string varValue)
         {
-            await PostJson("variables/set", new
+            CheckInit();
+
+            PostJson("variables/set", new
             {
                 session_id = sessionId,
                 var_key = varKey,
@@ -269,13 +386,51 @@ namespace AuthlyXClient
         /// Sends a log message to the server (stored or sent to webhook based on app settings).
         /// </summary>
         /// <param name="message">The log message to send.</param>
-        public async Task Log(string message)
+        public void Log(string message)
         {
-            await PostJson("logs", new
+            CheckInit();
+
+            PostJson("logs", new
             {
                 session_id = sessionId,
                 message = message
             });
+        }
+
+        /// <summary>
+        /// Gets the current application hash that will be sent to the server.
+        /// </summary>
+        /// <returns>The application hash, or null if not set.</returns>
+        public string GetCurrentApplicationHash()
+        {
+            return applicationHash;
+        }
+
+        /// <summary>
+        /// Gets the current session ID.
+        /// </summary>
+        /// <returns>The session ID.</returns>
+        public string GetSessionId()
+        {
+            return sessionId;
+        }
+
+        /// <summary>
+        /// Checks if the SDK is properly initialized.
+        /// </summary>
+        /// <returns>True if initialized, false otherwise.</returns>
+        public bool IsInitialized()
+        {
+            return initialized;
+        }
+
+        /// <summary>
+        /// Gets the application name.
+        /// </summary>
+        /// <returns>The application name.</returns>
+        public string GetAppName()
+        {
+            return appName;
         }
 
         private string GetSystemSid()
@@ -303,12 +458,26 @@ namespace AuthlyXClient
             catch { }
             return "UNKNOWN_IP";
         }
+
+        private void Error(string message)
+        {
+            AuthlyLogger.Log($"[ERROR] {message}");
+
+            // Show error in console window
+            Process.Start(new ProcessStartInfo("cmd.exe", $"/c start cmd /C \"color 4 && title AuthlyX Error && echo {message} && timeout /t 5\"")
+            {
+                CreateNoWindow = true,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false
+            });
+        }
     }
 
     public static class AuthlyLogger
     {
         public static bool Enabled = true;
-        public static string AppName = "AuthlyX";
+        public static string AppName = "AuthlyX"; // Default, will be overridden by auth constructor
 
         public static void Log(string content)
         {
@@ -333,7 +502,7 @@ namespace AuthlyXClient
         private static string Redact(string text)
         {
             if (string.IsNullOrEmpty(text)) return text;
-            string[] fields = { "session_id", "owner_id", "secret", "password", "key", "license_key" };
+            string[] fields = { "session_id", "owner_id", "secret", "password", "key", "license_key", "hash" };
             foreach (var f in fields)
             {
                 text = System.Text.RegularExpressions.Regex.Replace(

@@ -3,24 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{71129B38-F66C-4530-BF74-24B754D4F1A4}|AuthlyX C# Example (Form)\\AuthlyX C# Example (Form).csproj|C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\authlyx c# example (form)\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{71129B38-F66C-4530-BF74-24B754D4F1A4}|AuthlyX C# Example (Form)\\AuthlyX C# Example (Form).csproj|solutionrelative:authlyx c# example (form)\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{71129B38-F66C-4530-BF74-24B754D4F1A4}|AuthlyX C# Example (Form)\\AuthlyX C# Example (Form).csproj|c:\\users\\user\\desktop\\authlyx examples\\authlyx c# example\\authlyx c# example (form)\\authlyx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{71129B38-F66C-4530-BF74-24B754D4F1A4}|AuthlyX C# Example (Form)\\AuthlyX C# Example (Form).csproj|solutionrelative:authlyx c# example (form)\\authlyx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{71129B38-F66C-4530-BF74-24B754D4F1A4}|AuthlyX C# Example (Form)\\AuthlyX C# Example (Form).csproj|c:\\users\\user\\desktop\\authlyx examples\\authlyx c# example\\authlyx c# example (form)\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{71129B38-F66C-4530-BF74-24B754D4F1A4}|AuthlyX C# Example (Form)\\AuthlyX C# Example (Form).csproj|solutionrelative:authlyx c# example (form)\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{71129B38-F66C-4530-BF74-24B754D4F1A4}|AuthlyX C# Example (Form)\\AuthlyX C# Example (Form).csproj|c:\\users\\user\\desktop\\authlyx examples\\authlyx c# example\\authlyx c# example (form)\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{71129B38-F66C-4530-BF74-24B754D4F1A4}|AuthlyX C# Example (Form)\\AuthlyX C# Example (Form).csproj|solutionrelative:authlyx c# example (form)\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{5D7285DF-C153-4D94-9C55-737FBDFAE328}|AuthlyX C# Example (Console)\\AuthlyX C# Example (Console).csproj|c:\\users\\user\\desktop\\authlyx examples\\authlyx c# example\\authlyx c# example (console)\\authlyx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5D7285DF-C153-4D94-9C55-737FBDFAE328}|AuthlyX C# Example (Console)\\AuthlyX C# Example (Console).csproj|solutionrelative:authlyx c# example (console)\\authlyx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{71129B38-F66C-4530-BF74-24B754D4F1A4}|AuthlyX C# Example (Form)\\AuthlyX C# Example (Form).csproj|C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\authlyx c# example (form)\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{71129B38-F66C-4530-BF74-24B754D4F1A4}|AuthlyX C# Example (Form)\\AuthlyX C# Example (Form).csproj|solutionrelative:authlyx c# example (form)\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{71129B38-F66C-4530-BF74-24B754D4F1A4}|AuthlyX C# Example (Form)\\AuthlyX C# Example (Form).csproj|C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\authlyx c# example (form)\\authlyx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{71129B38-F66C-4530-BF74-24B754D4F1A4}|AuthlyX C# Example (Form)\\AuthlyX C# Example (Form).csproj|solutionrelative:authlyx c# example (form)\\authlyx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{71129B38-F66C-4530-BF74-24B754D4F1A4}|AuthlyX C# Example (Form)\\AuthlyX C# Example (Form).csproj|C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\authlyx c# example (form)\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{71129B38-F66C-4530-BF74-24B754D4F1A4}|AuthlyX C# Example (Form)\\AuthlyX C# Example (Form).csproj|solutionrelative:authlyx c# example (form)\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{71129B38-F66C-4530-BF74-24B754D4F1A4}|AuthlyX C# Example (Form)\\AuthlyX C# Example (Form).csproj|c:\\users\\user\\desktop\\authlyx examples\\authlyx c# example\\authlyx c# example (form)\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{71129B38-F66C-4530-BF74-24B754D4F1A4}|AuthlyX C# Example (Form)\\AuthlyX C# Example (Form).csproj|solutionrelative:authlyx c# example (form)\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{71129B38-F66C-4530-BF74-24B754D4F1A4}|AuthlyX C# Example (Form)\\AuthlyX C# Example (Form).csproj|C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\authlyx c# example (form)\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{71129B38-F66C-4530-BF74-24B754D4F1A4}|AuthlyX C# Example (Form)\\AuthlyX C# Example (Form).csproj|solutionrelative:authlyx c# example (form)\\home.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,7 +42,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "AuthlyX.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\AuthlyX C# Example (Console)\\AuthlyX.cs",
+              "RelativeDocumentMoniker": "AuthlyX C# Example (Console)\\AuthlyX.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\AuthlyX C# Example (Console)\\AuthlyX.cs",
+              "RelativeToolTip": "AuthlyX C# Example (Console)\\AuthlyX.cs",
+              "ViewState": "AgIAAMMAAAAAADMzMzPjv8cAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-27T09:56:52.428Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthlyX.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\AuthlyX C# Example (Form)\\AuthlyX.cs",
+              "RelativeDocumentMoniker": "AuthlyX C# Example (Form)\\AuthlyX.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\AuthlyX C# Example (Form)\\AuthlyX.cs",
+              "RelativeToolTip": "AuthlyX C# Example (Form)\\AuthlyX.cs",
+              "ViewState": "AgIAAEsAAAAA/P////8bwCUAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-27T09:56:46.764Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Home.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\AuthlyX C# Example (Form)\\Home.cs",
+              "RelativeDocumentMoniker": "AuthlyX C# Example (Form)\\Home.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\AuthlyX C# Example (Form)\\Home.cs",
+              "RelativeToolTip": "AuthlyX C# Example (Form)\\Home.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-27T08:02:16.703Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Home.cs [Design]",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\AuthlyX C# Example (Form)\\Home.cs",
               "RelativeDocumentMoniker": "AuthlyX C# Example (Form)\\Home.cs",
@@ -50,20 +93,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\AuthlyX C# Example (Form)\\Program.cs",
-              "RelativeDocumentMoniker": "AuthlyX C# Example (Form)\\Program.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\AuthlyX C# Example (Form)\\Program.cs",
-              "RelativeToolTip": "AuthlyX C# Example (Form)\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-24T11:15:33.447Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Login.cs [Design]",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\AuthlyX C# Example (Form)\\Login.cs",
               "RelativeDocumentMoniker": "AuthlyX C# Example (Form)\\Login.cs",
@@ -75,28 +105,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Login.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\AuthlyX C# Example (Form)\\Login.cs",
               "RelativeDocumentMoniker": "AuthlyX C# Example (Form)\\Login.cs",
               "ToolTip": "C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\AuthlyX C# Example (Form)\\Login.cs",
               "RelativeToolTip": "AuthlyX C# Example (Form)\\Login.cs",
-              "ViewState": "AgIAAJsAAAAAAAAAAAAhwK8AAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-23T21:31:40.699Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AuthlyX.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\AuthlyX C# Example (Form)\\AuthlyX.cs",
-              "RelativeDocumentMoniker": "AuthlyX C# Example (Form)\\AuthlyX.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\AuthlyX Examples\\AuthlyX C# Example\\AuthlyX C# Example (Form)\\AuthlyX.cs",
-              "RelativeToolTip": "AuthlyX C# Example (Form)\\AuthlyX.cs",
-              "ViewState": "AgIAAKIAAAAAAAAAAAAcwFwBAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-23T21:31:25.237Z",
               "EditorCaption": ""
             }
           ]

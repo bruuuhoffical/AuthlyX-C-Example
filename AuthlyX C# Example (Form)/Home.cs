@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using AuthlyXClient;
 namespace AuthlyX_C__Example__Form_
 {
     public partial class Home : Form

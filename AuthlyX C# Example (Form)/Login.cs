@@ -1,4 +1,4 @@
-﻿using AuthlyXClient;
+﻿using AuthlyX;
 using Guna.UI2.WinForms;
 using System;
 using System.Net.Sockets;
@@ -10,30 +10,24 @@ namespace AuthlyX_C__Example__Form_
         public static auth AuthlyXApp = new auth(
             ownerId: "469e4d9235d1",
             appName: "BASIC",
-            version: "1.1.0",
+            version: "1.1",
             secret: "iqcmyagw1skGdgk6Nq7OxxpX5iAmC2Hlwq7iNwyG"
         );
         public Login()
         {
             InitializeComponent();
+            AuthlyXApp.Init();
         }
 
-        private async void Login_Load(object sender, EventArgs e)
+        private void Login_Load(object sender, EventArgs e)
         {
-            await AuthlyXApp.Init();
             if (AuthlyXApp.response.success)
             {
-                //MessageBox.Show("Successfully connected to AuthlyX!", "Success",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                AuthlyXApp.Log("Application started");
             }
-            else
-            {
-                MessageBox.Show($"Initialization failed: {AuthlyXApp.response.message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-            }
-            await AuthlyXApp.Log("Initialized");
         }
 
-        private async void btn_Login_Click(object sender, EventArgs e)
+        private void btn_Login_Click(object sender, EventArgs e)
         {
             string username = txtUser.Text;
             string password = txtPass.Text;
@@ -50,7 +44,7 @@ namespace AuthlyX_C__Example__Form_
 
             try
             {
-                await AuthlyXApp.Login(username, password);
+                AuthlyXApp.Login(username, password);
 
                 if (AuthlyXApp.response.success)
                 {
@@ -79,7 +73,7 @@ namespace AuthlyX_C__Example__Form_
             }
         }
 
-        private async void btn_Register_Click(object sender, EventArgs e)
+        private void btn_Register_Click(object sender, EventArgs e)
         {
             string username = txt_regUser.Text;
             string password = txt_regPass.Text;
@@ -93,11 +87,11 @@ namespace AuthlyX_C__Example__Form_
             }
 
             this.Enabled = false;
-            btn_Login.Text = "Registering...";
+            btn_Register.Text = "Registering...";
 
             try
             {
-                await AuthlyXApp.Register(username, password, key);
+                AuthlyXApp.Register(username, password, key);
 
                 if (AuthlyXApp.response.success)
                 {
@@ -122,11 +116,11 @@ namespace AuthlyX_C__Example__Form_
             finally
             {
                 this.Enabled = true;
-                btn_Login.Text = "Register";
+                btn_Register.Text = "Register";
             }
         }
 
-        private async void btn_simpleLogin_Click(object sender, EventArgs e)
+        private void btn_simpleLogin_Click(object sender, EventArgs e)
         {
             string key = txt_Key.Text;
 
@@ -138,11 +132,11 @@ namespace AuthlyX_C__Example__Form_
             }
 
             this.Enabled = false;
-            btn_Login.Text = "Logging in...";
+            btn_simpleLogin.Text = "Logging in...";
 
             try
             {
-                await AuthlyXApp.LicenseLogin(key);
+                AuthlyXApp.LicenseLogin(key);
 
                 if (AuthlyXApp.response.success)
                 {
@@ -167,7 +161,7 @@ namespace AuthlyX_C__Example__Form_
             finally
             {
                 this.Enabled = true;
-                btn_Login.Text = "Login";
+                btn_simpleLogin.Text = "Login";
             }
         }
 
